@@ -1,0 +1,19 @@
+
+body{
+    background-color:black;
+}
+
+.widthLine{
+    background-color:white;
+    width:auto;
+    height:1px;
+}
+.heightLine{
+    background-color:white;
+    width:1px;
+    height:auto;
+}
+
+.target {
+    position: absolute;
+}
