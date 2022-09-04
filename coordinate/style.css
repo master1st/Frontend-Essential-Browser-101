@@ -5,15 +5,18 @@ body{
 
 .widthLine{
     background-color:white;
-    width:auto;
+    width:100%;
+    position : absolute;
     height:1px;
 }
 .heightLine{
     background-color:white;
     width:1px;
-    height:auto;
+    position : absolute;
+    height:100%;
 }
 
 .target {
+    transform: translate(-50%, -50%);
     position: absolute;
 }

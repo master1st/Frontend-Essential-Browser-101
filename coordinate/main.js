@@ -19,7 +19,6 @@ document.addEventListener('mousemove', (event) => {
     target.style.top = `${y}px`;
     target.style.left = `${x}px`;
     widthLine.style.top= `${y}px`;
-    widthLine.style.left= `${x}px`;
-    console.log(event.clientX);
+    heightLine.style.left= `${x}px`;
     
 })
