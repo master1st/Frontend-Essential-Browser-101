@@ -1,52 +1,85 @@
 
-body{
-    background-image: url("/carrot/img/background.png");
-    background-size: 100% 100%;
+.game {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    width:1000px;
+    height: 700px;
+    background: url(/carrot/img/background.png) center/cover;
 }
-.nav {
-    width : 100%;
-    height : 40vh;
+.game >.game_header {
     display:flex;
     flex-direction:column;
     align-items: center;
 }
-.game_unit{
+.unit_field {
+    position:relative;
     width : 100%;
-    height : 60vh;
+    height : 100%;
+    margin-top:60px;
 }
-i{
+.pop_up{
+    display:none;
+    position: absolute;
+    left:360px;
+    bottom:600px;
+}
+.pop_up >.game_victory{
+    position:block;
+    display:flex;
+    flex-direction : column;
+    align-items: center;
+    justify-content: center;
+}
+.message{
+    font-size:3rem;
+}
+i {
     font-size :3rem;
 }
 
-.nav >.timer {
-    width: 300px; 
-    height: 100px;
-    margin-bottom : 20px;
+.game >.game_header >.timer {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:  120px; 
+    height: 60px;
     margin-top : 20px;
     text-align: center;
-    border:10px solid black;  
+    border:4px solid black;  
     background-color : whitesmoke;
     color: black;
-    font-size :3rem;
+    font-size : 24px;
+    
 }
-.nav >.count{
-    line-height: 100px;
+.game >.game_header >.count{
+    line-height: 50px;
     text-align: center;
-    margin-bottom : 20px;
     margin-top : 20px;
-    width:100px;
-    height:100px;
+    width:60px;
+    height:60px;
     font-size : 1.2rem;
     border-radius: 50%;
     background-color : salmon;
-    border:10px solid black; 
-    font-size :3rem;
+    border:4px solid black; 
+    font-size :24px;
     
 }
-.nav > .startbtn{
-    border:10px solid black; 
-    margin-bottom : 20px;
+.game >.game_header > .startbtn{
+    border:4px solid black;
+    font-size: 24px;
+    background-color: wheat; 
     margin-top : 20px;
-    width:100px;
-    height:100px;
+    width:60px;
+    height:60px;
 }
+.unit_field > .carrot{
+    width: 100px;
+    height: 100px;
+}
+
+.unit_field > .bug{
+    width: 80px;
+    height: 80px;
+}
+

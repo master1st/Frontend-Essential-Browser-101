@@ -12,20 +12,30 @@
 
 <body>
     <script src="game.js" defer></script>
-    <section class="nav">
-        <button class="startbtn">
-            <i class="fa-solid fa-play"></i>
-        </button>
-        <div class="timer">
-            <p> 00:00
-            </p>
+    <section class="game">
+        <header class="game_header">
+            <button class="startbtn">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <div class="timer">
+                <p class="t_digit">0</p>
+                <p class="o_digit">0:</p>
+                <p class="ten_digit">0</p>
+                <p class="one_digit">0</p>
+            </div>
+            <p class="count">0</p>
+        </header>
+        <div class="unit_field">
+            <img class="carrot" src="/carrot/img/carrot.png">
+            <img class="bug" src="/carrot/img/bug.png">
         </div>
-        <p class="count">0</p>
     </section>
-    <footer class="game_unit">
-        <img src="/carrot/img/carrot.png">
-        <img src="/carrot/img/bug.png">
-    </footer>
+    <section class="pop_up">
+        <div class="game_victory">
+            <button class="refresh"><i class="fa-solid fa-rotate-right"></i></button>
+            <p class="message">"you winner!"</p>
+        </div>
+    </section>
 </body>
 
 </html>
