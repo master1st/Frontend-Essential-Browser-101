@@ -1,10 +1,12 @@
 const startbtn = document.querySelector(".startbtn");
+const refresh = document.querySelector(".refresh");
 const fa_solid = document.querySelector("i");
 const count = document.querySelector(".count");
 const timer = document.querySelector(".timer");
 const ten_digit = document.querySelector(".ten_digit");
 const one_digit = document.querySelector(".one_digit");
 const unit_field = document.querySelector(".unit_field");
+
 
 const fieldRect = unit_field.getBoundingClientRect();
 const message = document.querySelector('.message');
@@ -45,13 +47,25 @@ count.innerHTML = 0;
       }
     }, 1000);
   } else {
+    childbugcnt = 0;
     showPopup(startstopcnt);
+    pop_up.style.visibility = "visible";
+    startbtn.style.visibility = "hidden";
     fa_solid.className = "fa-solid fa-play";
     clearInterval(playtimer);
+    remove();
+    
   }
 }
 
-
+refresh.addEventListener('click', () => {
+    startbtn.style.visibility = "visible";
+    pop_up.style.visibility = "hidden";
+    initGame();
+    
+})
+// restart 버튼 누르면 당근 벌레 다시 삭제후 initGame을 다시 누른효과
+//
 
 startbtn.addEventListener("click", (event) => {
     initGame();
@@ -83,30 +97,41 @@ function unit_count_init() {
      });
      count.innerHTML = childbugcnt;
 };
+// restart의 경우와 win & lose의 경우가 다르다. 
+// 벌레의 개수를 다시 업데이트 해줘야해.. ㅅㅂ 근데 어케하노 
 function unit_remove(e) {
     if(e.target.className === "bug_unit"){
         unit_field.removeChild(e.target);
         count.innerText = childbugcnt-=1; 
-        console.log(timercnt);
     }
     if(childbugcnt === 0){
         clearInterval(playtimer);
     }
-};
+}
+function remove(){
+        while (unit_field.hasChildNodes()) {	
+            unit_field.removeChild(
+              unit_field.firstChild
+            );
+          }
+          unit_count_init(startstopcnt);
+          count.innerHTML = childbugcnt;
+}
 function randomNumber(min, max) {
     return Math.random() * (max-min) + min;
 }
 function initTimer() {
   ten_digit.InnerText("1");
 }
+
 function showPopup(startstopcnt) {
     if(startstopcnt %2 === 0){
         message.innerHTML = restartMsg;
         pop_up.style.display = "block";
     }
     if(timercnt === 0 && childbugcnt > 0){
-    message.innerHTML = loseMsg;
-    pop_up.style.display = "block";
+        message.innerHTML = loseMsg;
+        pop_up.style.display = "block";
     } else if(timercnt > 0 && childbugcnt === 0){
         message.innerHTML = winMsg;
         pop_up.style.display = "block";
