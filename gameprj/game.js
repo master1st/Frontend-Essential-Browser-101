@@ -5,10 +5,16 @@ const timer = document.querySelector(".timer");
 const ten_digit = document.querySelector(".ten_digit");
 const one_digit = document.querySelector(".one_digit");
 const unit_field = document.querySelector(".unit_field");
+
 const fieldRect = unit_field.getBoundingClientRect();
-// const carrot = document.querySelector('carrot');
-// const bug = document.querySelector('bug');
-// 나중에 startstopcnt 리팩토링
+const message = document.querySelector('.message');
+const pop_up = document.querySelector('.pop_up');
+
+var winMsg = "You Win !";
+var loseMsg = "You lose !";
+var restartMsg = "game again ?";
+
+
 var childbugcnt = 0;
 var unit_count = 10;
 var unitSize = 70;
@@ -20,18 +26,18 @@ var image;
 count.innerHTML = 0;
 
 
-function initGame() {
+ function initGame() {
   startstopcnt += 1;
-  if (startstopcnt % 2 == 0) {
+  if (startstopcnt % 2 !== 0) {
     unit_create("carrot_unit", "/carrot/img/carrot.png", unit_count);
     unit_create("bug_unit", "/carrot/img/bug.png", unit_count);
     unit_count_init();
     document.addEventListener('click', (e) => {
        unit_remove(e);
     });
-
     fa_solid.setAttribute("class", "fa-solid fa-stop");
     playtimer = setInterval(() => {
+        showPopup(startstopcnt);
       if (timercnt > 0) {
         gameTimer();
       } else if(timercnt == 0) {
@@ -39,6 +45,7 @@ function initGame() {
       }
     }, 1000);
   } else {
+    showPopup(startstopcnt);
     fa_solid.className = "fa-solid fa-play";
     clearInterval(playtimer);
   }
@@ -79,7 +86,11 @@ function unit_count_init() {
 function unit_remove(e) {
     if(e.target.className === "bug_unit"){
         unit_field.removeChild(e.target);
-        count.innerHTML = childbugcnt-=1; 
+        count.innerText = childbugcnt-=1; 
+        console.log(timercnt);
+    }
+    if(childbugcnt === 0){
+        clearInterval(playtimer);
     }
 };
 function randomNumber(min, max) {
@@ -87,6 +98,19 @@ function randomNumber(min, max) {
 }
 function initTimer() {
   ten_digit.InnerText("1");
+}
+function showPopup(startstopcnt) {
+    if(startstopcnt %2 === 0){
+        message.innerHTML = restartMsg;
+        pop_up.style.display = "block";
+    }
+    if(timercnt === 0 && childbugcnt > 0){
+    message.innerHTML = loseMsg;
+    pop_up.style.display = "block";
+    } else if(timercnt > 0 && childbugcnt === 0){
+        message.innerHTML = winMsg;
+        pop_up.style.display = "block";
+    } 
 }
 function gameTimer() {
   timercnt--;
@@ -97,5 +121,9 @@ function gameTimer() {
 }
 }
 
-//이제 벌레를 10마리를 만들어야해. function for문 이용해서, dom 객체 생성으로
-//math random 배치 animation으로 움직이는것까지 추가하는 것은 추가 프로젝트로 
+/* 목표
+1.일단 먼저만들고 
+2.강의보고
+3.개념 notion에 정리하고
+4.프로젝트 개선, 확장 
+*/

@@ -18,24 +18,33 @@
     height : 100%;
     margin-top:60px;
 }
-.pop_up{
+.pop_up {
     display:none;
-    position: absolute;
-    left:360px;
-    bottom:600px;
+    width:400px;
+    height:100px;
+    padding:100px;
+    text-align: center;
+    opacity: 0.8;
+    /* margin-left:217px; */
+    transform : translate(33%,-130%);
+    background-color:black;
 }
-.pop_up >.game_victory{
-    position:block;
-    display:flex;
-    flex-direction : column;
-    align-items: center;
-    justify-content: center;
-}
-.message{
+
+.pop_up >.message{
+    color: white;
     font-size:3rem;
 }
-i {
+.pop_up > .refresh{
+    padding:0px;
+    border:0px;
+    outline:0px;
+}
+.fa-play{
     font-size :3rem;
+}
+.fa-rotate-right {
+    background-color: darkgreen;
+    font-size :4rem;
 }
 
 .game >.game_header >.timer {
