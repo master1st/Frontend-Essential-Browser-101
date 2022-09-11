@@ -34,6 +34,7 @@ count.innerHTML = 0;
     unit_create("carrot_unit", "/carrot/img/carrot.png", unit_count);
     unit_create("bug_unit", "/carrot/img/bug.png", unit_count);
     unit_count_init();
+   
     document.addEventListener('click', (e) => {
        unit_remove(e);
     });
@@ -42,7 +43,7 @@ count.innerHTML = 0;
         showPopup(startstopcnt);
       if (timercnt > 0) {
         gameTimer();
-      } else if(timercnt == 0) {
+      } else if(timercnt === 0) {
         clearInterval(playtimer);
       }
     }, 1000);
@@ -61,6 +62,7 @@ count.innerHTML = 0;
 refresh.addEventListener('click', () => {
     startbtn.style.visibility = "visible";
     pop_up.style.visibility = "hidden";
+    timercnt = 11;
     initGame();
     
 })
@@ -97,8 +99,7 @@ function unit_count_init() {
      });
      count.innerHTML = childbugcnt;
 };
-// restart의 경우와 win & lose의 경우가 다르다. 
-// 벌레의 개수를 다시 업데이트 해줘야해.. ㅅㅂ 근데 어케하노 
+ 
 function unit_remove(e) {
     if(e.target.className === "bug_unit"){
         unit_field.removeChild(e.target);
@@ -106,8 +107,12 @@ function unit_remove(e) {
     }
     if(childbugcnt === 0){
         clearInterval(playtimer);
+        if(timercnt > 0){
+            message.innerHTML = winMsg;
+                pop_up.style.visibility = "visible";
+            } 
+        }
     }
-}
 function remove(){
         while (unit_field.hasChildNodes()) {	
             unit_field.removeChild(
@@ -125,16 +130,15 @@ function initTimer() {
 }
 
 function showPopup(startstopcnt) {
+    // pop_up.style.visibility = "visible";
     if(startstopcnt %2 === 0){
         message.innerHTML = restartMsg;
-        pop_up.style.display = "block";
+        pop_up.style.visibility = "visible";
     }
+    console.log(childbugcnt);
     if(timercnt === 0 && childbugcnt > 0){
         message.innerHTML = loseMsg;
-        pop_up.style.display = "block";
-    } else if(timercnt > 0 && childbugcnt === 0){
-        message.innerHTML = winMsg;
-        pop_up.style.display = "block";
+        pop_up.style.visibility = "visible";
     } 
 }
 function gameTimer() {

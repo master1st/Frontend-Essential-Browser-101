@@ -19,7 +19,7 @@
     margin-top:60px;
 }
 .pop_up {
-    display:none;
+    visibility : hidden;
     width:400px;
     height:100px;
     padding:70px;
